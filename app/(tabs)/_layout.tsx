@@ -1,37 +1,40 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+/*
+ * @Author: xt-guiyi 1661219752@qq.com
+ * @Date: 2024-10-08 21:33:46
+ * @LastEditors: xt-guiyi 1661219752@qq.com
+ * @LastEditTime: 2024-10-08 22:28:28
+ * @Description: 
+ */
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { FontAwesome } from "@expo/vector-icons";
+import AntDesign from '@expo/vector-icons/AntDesign'
+import { Tabs } from "expo-router";
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
+export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
+		<Tabs>
+			<Tabs.Screen
+				name='index'
+				options={{
+					title: '首页',
+					tabBarIcon: ({ color }) => <AntDesign size={28} name='home' color={color} />,
+				}}
+			/>
+			<Tabs.Screen
+				name='discover'
+				options={{
+					title: '发现',
+					tabBarIcon: ({ color }) => <AntDesign size={28} name='find' color={color} />,
+				}}
+			/>
+			<Tabs.Screen
+				name='me'
+				options={{
+					title: '我的',
+					tabBarIcon: ({ color }) => <AntDesign size={28} name='user' color={color} />,
+				}}
+			/>
+		</Tabs>
+	)
 }
