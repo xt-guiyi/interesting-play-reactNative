@@ -2,7 +2,7 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 21:33:46
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-08 22:28:28
+ * @LastEditTime: 2024-10-11 23:45:21
  * @Description: 
  */
 
@@ -11,7 +11,8 @@ import AntDesign from '@expo/vector-icons/AntDesign'
 import { Tabs } from "expo-router";
 
 
-export default function Layout() {
+export default function TabsLayout() {
+  console.log('TabsLayout')
   return (
 		<Tabs>
 			<Tabs.Screen

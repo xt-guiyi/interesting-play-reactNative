@@ -2,15 +2,17 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 22:29:52
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-08 22:40:56
+ * @LastEditTime: 2024-10-11 23:46:53
  * @Description:
  */
 import { Redirect } from 'expo-router'
-
+import { useAuth } from '@/hooks/useAuth'
 export default function Index() {
-	if (true) {
-		return <Redirect href='/(root)/signIn' />
-	}else {
-    return <Redirect href="/(tabs)" />
-  }
+
+  // TODO: 判断是否是第一次打开app，如果是，则跳转到欢迎页面，否则跳转到主页
+  const { loading, token } = useAuth()
+  console.log('Index', loading, token)
+  if(loading) return <></>
+  if(!token) return <Redirect href='/signIn' />
+	return <Redirect href='/(tabs)' />
 }
