@@ -11,6 +11,7 @@ import { View, Text } from 'react-native'
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/src/store'
 import Toast from 'react-native-root-toast'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function HomePage() {
 	const [videoList, setVideoList] = useState<Record<string, any>[]>([])
@@ -33,15 +34,17 @@ export default function HomePage() {
 	}, [])
 
 	return (
-		<View>
-			{videoList.map((item, index) => {
-				return (
-					<View key={item.id}>
-						<Text>{item.title}</Text>
-						<Text>{item.desc}</Text>
-					</View>
-				)
-			})}
-		</View>
+		<SafeAreaView>
+			<View>
+				{videoList.map((item, index) => {
+					return (
+						<View key={item.id}>
+							<Text>{item.title}</Text>
+							<Text>{item.desc}</Text>
+						</View>
+					)
+				})}
+			</View>
+		</SafeAreaView>
 	)
 }

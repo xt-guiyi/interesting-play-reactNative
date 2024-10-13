@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/splash.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.xtguiyi.rn.interestingplay"
     },
     "web": {
       "bundler": "metro",
