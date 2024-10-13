@@ -2,16 +2,16 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 22:59:07
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-11 23:09:50
+ * @LastEditTime: 2024-10-13 17:34:44
  * @Description: axios请求封装
  */
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
 import axios, { AxiosResponse } from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { AUTHORIZATION, REFRESH_TOKEN } from '../constants/app'
 // import { notification } from 'ant-design-vue'
 
-export const AUTHORIZATION = 'authorization'
-export const REFRESH_TOKEN = 'refreshToken'
+
 export interface ResponseData<T> {
 	code: number
 	message: string

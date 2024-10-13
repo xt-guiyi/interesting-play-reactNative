@@ -2,17 +2,17 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-09 21:12:25
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-09 21:44:59
+ * @LastEditTime: 2024-10-13 16:26:40
  * @Description: 用户数据
  */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { AUTHORIZATION } from '@/src/constants/app'
 export interface UserState {
   token: string | null
   userInfo: object
 }
 
-// 使用该类型定义初始 state
 const initialState: UserState = {
 	token: '',
 	userInfo: {
@@ -26,11 +26,11 @@ export const userSlice = createSlice({
 	reducers: {
 		setToken: (state, action: PayloadAction<string>) => {
 			state.token = action.payload
-			AsyncStorage.setItem('token', action.payload)
+			AsyncStorage.setItem(AUTHORIZATION, action.payload)
 		},
 		clearToken: state => {
 			state.token = null
-			AsyncStorage.removeItem('token')
+			AsyncStorage.removeItem(AUTHORIZATION)
 		},
 		setUserInfo: (state, action: PayloadAction<object>) => {
 			state.userInfo = action.payload
@@ -41,6 +41,6 @@ export const userSlice = createSlice({
 	},
 })
 
-export const { setToken, setUserInfo } = userSlice.actions
+export const { setToken, clearToken, clearUserInfo, setUserInfo } = userSlice.actions
 
 export default userSlice.reducer

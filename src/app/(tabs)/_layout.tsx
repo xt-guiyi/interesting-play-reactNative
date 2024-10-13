@@ -2,17 +2,19 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 21:33:46
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-11 23:45:21
+ * @LastEditTime: 2024-10-13 17:54:11
  * @Description: 
  */
 
 import { FontAwesome } from "@expo/vector-icons";
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { Tabs } from "expo-router";
+import { useSelector, useDispatch } from 'react-redux'
+import type { RootState } from '@/src/store'
+import { setToken } from '@/src/store/user'
 
 
 export default function TabsLayout() {
-  console.log('TabsLayout')
   return (
 		<Tabs>
 			<Tabs.Screen
