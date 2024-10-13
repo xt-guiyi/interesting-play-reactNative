@@ -6,7 +6,7 @@
  * @Description: 
  */
 
-import DiscoverPage from '@/pages/discover'
+import DiscoverPage from '@/src/pages/discover'
 
 export default function DiscoverRoute() {
 	return <DiscoverPage />

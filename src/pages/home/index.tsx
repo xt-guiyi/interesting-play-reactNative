@@ -2,10 +2,10 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 21:38:49
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-11 23:07:52
+ * @LastEditTime: 2024-10-13 15:46:23
  * @Description:
  */
-import { getVideoList } from '@/api/request/home'
+import { getVideoList } from '@/src/hooks/api/request/home'
 import { useEffect, useState } from 'react'
 import { View, Text } from 'react-native'
 

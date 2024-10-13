@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-10-08 22:12:31
  * @Description: 
  */
-import HomePage from '@/pages/home'
+import HomePage from '@/src/pages/home'
 
 export default function HomeRoute() {
 	return <HomePage />
