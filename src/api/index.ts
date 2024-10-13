@@ -2,15 +2,17 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 22:59:07
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-13 17:34:44
+ * @LastEditTime: 2024-10-13 19:22:40
  * @Description: axios请求封装
  */
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
 import axios, { AxiosResponse } from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { AUTHORIZATION, REFRESH_TOKEN } from '../constants/app'
+import { AUTHORIZATION, REFRESH_TOKEN } from '@/src/constants/app'
+import Toast from 'react-native-root-toast'
+import { handlerErrorCode } from '@/src/constants/httpError'
+import { Platform } from 'react-native'
 // import { notification } from 'ant-design-vue'
-
 
 export interface ResponseData<T> {
 	code: number
@@ -19,9 +21,10 @@ export interface ResponseData<T> {
 }
 
 // 创建 axios 实例
+console.log(process.env)
 const request = axios.create({
 	// API 请求的默认前缀
-	baseURL: 'http://192.168.31.232:3000/',
+	baseURL: process.env.EXPO_PUBLIC_API_URL,
 	timeout: 6000, // 请求超时时间
 })
 
@@ -29,31 +32,27 @@ const request = axios.create({
 const errorHandler = (error: AxiosError<ResponseData<any>, any>): Promise<any> => {
 	if (error.response) {
 		// 请求成功发出且服务器也响应了状态码，但是状态码超出了 2xx 的范围
-		const { data, status, statusText } = error.response
-		// 403 无权限
-		// if (status === 403) {
-		// 	notification.error({
-		// 		message: 'Forbidden',
-		// 		description: (data && data.message) || statusText,
-		// 	})
-		// }
-		// 401 未登录/未授权
-		// if (status === 401 && data.result && data.result.isLogin) {
-		// notification.error({
-		// 	message: 'Unauthorized',
-		// 	description: 'Authorization verification failed',
-		// })
-		// }
-	}else if(error.request){
+		const status = error.response.status
+		// 处理不同的 HTTP 错误状态码
+    const message = handlerErrorCode(status)
+    if(Platform.OS === 'web') {
+      console.error(message)
+    }else {
+			Toast.show(message, {
+				duration: Toast.durations.LONG,
+				position: Toast.positions.CENTER,
+				opacity: 0.6,
+				textColor: 'white',
+			})
+		}
+	} else if (error.request) {
 		// 请求已经成功发起，但没有收到响应
-		// `error.request` 在浏览器中是 XMLHttpRequest 的实例，
-		// 而在node.js中是 http.ClientRequest 的实例
-		console.log(`错误类型：${error.name}，错误信息：${error.message}`)
-	}else{
+		console.error(`错误类型：${error.name}，错误信息：${error.message}`)
+	} else {
 		// 发送请求时出了点问题
-		console.log('Axios错误', error.message)
+		console.error('Axios错误', error.message)
 	}
-	return Promise.reject(error)
+	return Promise.resolve(error)
 }
 
 // 请求拦截器

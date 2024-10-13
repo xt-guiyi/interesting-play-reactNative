@@ -2,7 +2,7 @@
  * @Author: xt-guiyi 1661219752@qq.com
  * @Date: 2024-10-08 21:33:46
  * @LastEditors: xt-guiyi 1661219752@qq.com
- * @LastEditTime: 2024-10-13 17:54:11
+ * @LastEditTime: 2024-10-13 18:03:09
  * @Description: 
  */
 
@@ -16,7 +16,7 @@ import { setToken } from '@/src/store/user'
 
 export default function TabsLayout() {
   return (
-		<Tabs>
+		<Tabs screenOptions={{ headerShown: false }}>
 			<Tabs.Screen
 				name='index'
 				options={{
